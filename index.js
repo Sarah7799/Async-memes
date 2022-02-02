@@ -2,7 +2,9 @@ async function getData() {
     try{
     let resp = await fetch("https://api.imgflip.com/get_memes");
     let data = await resp.json();
-    createTable(data)
+    createTable(data.data)
+    console.log(data);
+
     return data;
     }
     catch(error){
@@ -16,7 +18,8 @@ getData();
 function createTable(data){
  let tBody = document.getElementById('tbody')
 
-    data.forEach((element) => {
+    data.memes.forEach((element) => {
+        
       let row = document.createElement('tr');
       let td1 = document.createElement("td");
       td1.innerHTML = element.id;
